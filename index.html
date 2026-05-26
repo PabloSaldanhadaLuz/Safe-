@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="logo-area">
+                <div class="logo-icon">🛡️</div>
+                <h1>Safe+</h1>
+                <p>Segurança e Saúde no Trabalho</p>
+            </div>
+
+            <div class="login-card">
+                <h2>Entrar</h2>
+
+                <input type="email" id="email" placeholder="Digite seu e-mail">
+                <input type="password" id="password" placeholder="Digite sua senha">
+
+                <button onclick="login()">Entrar</button>
+
+                <div class="login-links">
+                    <a href="#">Esqueceu a senha?</a>
+                    <a href="#">Criar conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APP -->
+    <div id="appScreen" class="hidden">
+
+        <div class="layout">
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div>
+                    <h1>Safe+</h1>
+                    <p>Sistema SST</p>
+
+                    <nav>
+                        <button onclick="openTab('home')">🏠 Início</button>
+                        <button onclick="openTab('physicalRisk')">⚠️ Reportar</button>
+                        <button onclick="openTab('reports')">📄 Relatos</button>
+                        <button onclick="openTab('profile')">👤 Perfil</button>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- MAIN -->
+            <main class="main-content">
+
+                <header>
+                    <div>
+                        <h2>Safe+</h2>
+                        <p>Monitoramento SST</p>
+                    </div>
+
+                    <button class="notification">🔔</button>
+                </header>
+
+                <!-- HOME -->
+                <section id="home" class="tab active-tab">
+                    <div class="welcome-card">
+                        <h2>Bem-vindo, Carlos</h2>
+                        <p>Ajude a manter um ambiente de trabalho seguro.</p>
+                    </div>
+
+                    <div class="actions">
+                        <button onclick="openTab('physicalRisk')" class="blue-btn">
+                            ⚠️ Reportar Risco Físico
+                        </button>
+
+                        <button onclick="openTab('wellBeing')" class="green-btn">
+                            🧠 Bem-Estar Psicológico
+                        </button>
+
+                        <button onclick="openTab('reports')" class="dark-btn">
+                            📄 Ver Meus Relatos
+                        </button>
+                    </div>
+
+                    <div class="news">
+                        <h3>Comunicados</h3>
+
+                        <div class="news-card">
+                            <h4>Treinamento SST</h4>
+                            <p>Treinamento obrigatório no auditório.</p>
+                        </div>
+
+                        <div class="news-card">
+                            <h4>Uso de EPI</h4>
+                            <p>Verifique seu equipamento regularmente.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RISCO -->
+                <section id="physicalRisk" class="tab">
+                    <h2>Relato de Risco Físico</h2>
+
+                    <select id="riskType">
+                        <option value="">Selecione o risco</option>
+                        <option>Elétrico</option>
+                        <option>Queda</option>
+                        <option>Máquina</option>
+                        <option>EPI</option>
+                    </select>
+
+                    <textarea id="riskDescription" placeholder="Descrição do risco"></textarea>
+
+                    <input type="text" id="riskLocation" placeholder="Localização específica">
+
+                    <input type="file">
+
+                    <button onclick="submitPhysicalRisk()" class="blue-btn">
+                        Enviar Relato
+                    </button>
+                </section>
+
+                <!-- BEM ESTAR -->
+                <section id="wellBeing" class="tab">
+                    <h2>Bem-Estar Psicológico</h2>
+
+                    <select id="mentalType">
+                        <option value="">Selecione</option>
+                        <option>Estresse</option>
+                        <option>Assédio Moral</option>
+                        <option>Burnout</option>
+                    </select>
+
+                    <textarea id="mentalDescription" placeholder="Descreva a situação"></textarea>
+
+                    <div class="confidential-box">
+                        🔒 Garantimos confidencialidade do relato.
+                    </div>
+
+                    <label class="checkbox-area">
+                        <input type="checkbox" id="anonymousToggle">
+                        Desejo manter anônimo
+                    </label>
+
+                    <button onclick="submitMentalHealth()" class="green-btn">
+                        Enviar Relato
+                    </button>
+                </section>
+
+                <!-- RELATOS -->
+                <section id="reports" class="tab">
+                    <h2>Meus Relatos</h2>
+
+                    <div id="reportsList"></div>
+                </section>
+
+                <!-- DETALHES -->
+                <section id="details" class="tab">
+                    <button class="voltar-btn" onclick="openTab('reports')">← Voltar</button>
+
+                    <div class="details-card">
+                        <h2 id="detailTitle"></h2>
+                        <p><strong>Data:</strong> <span id="detailDate"></span></p>
+                        <p><strong>Status:</strong> <span id="detailStatus"></span></p>
+                        <p><strong>Descrição:</strong> <span id="detailDescription"></span></p>
+                        <p><strong>Local:</strong> <span id="detailLocation"></span></p>
+
+                        <div class="feedback-box">
+                            <h3>Feedback da Equipe</h3>
+                            <p id="detailFeedback"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PERFIL -->
+                <section id="profile" class="tab">
+                    <div class="profile-card">
+                        <div class="profile-avatar">👤</div>
+                        <h2>Carlos Henrique</h2>
+                        <p>Técnico Operacional</p>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+        <!-- MOBILE NAV -->
+        <nav class="mobile-nav">
+            <button onclick="openTab('home')">🏠</button>
+            <button onclick="openTab('physicalRisk')">⚠️</button>
+            <button onclick="openTab('reports')">📄</button>
+            <button onclick="openTab('profile')">👤</button>
+        </nav>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
