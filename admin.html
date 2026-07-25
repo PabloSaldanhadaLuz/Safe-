@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe+ | Administrador</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo safe+.png" alt="">
+                <h1>Safe<span>+</span></h1>
+            </div>
+            <p>Painel Administrativo</p>
+            <button onclick="logout()">Sair</button>
+        </aside>
+        <main class="main">
+            <header>
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Gerenciamento dos relatos</p>
+                </div>
+            </header>
+            <section class="cards">
+                <div class="card">
+                    <h3>Total de Relatos</h3>
+                    <span id="totalReports">0</span>
+                </div>
+                <div class="card">
+                    <h3>Pendentes</h3>
+                    <span id="pendingReports">0</span>
+                </div>
+                <div class="card">
+                    <h3>Em Análise</h3>
+                    <span id="analysisReports">0</span>
+                </div>
+                <div class="card">
+                    <h3>Resolvidos</h3>
+                    <span id="resolvedReports">0</span>
+                </div>
+            </section>
+            <section class="reports">
+                <h2>Relatos Recebidos</h2>
+                <div id="reportsList"></div>
+            </section>
+        </main>
+        <aside class="details">
+
+            <h2>
+                <i data-lucide="clipboard-list"></i>
+                Detalhes do Relato
+            </h2>
+
+            <h3 id="detailTitle"></h3>
+
+            <div class="detail-item">
+                <strong>
+                    <i data-lucide="calendar-days"></i>
+                    Data
+                </strong>
+                <p id="detailDate"></p>
+            </div>
+
+            <div class="detail-item">
+                <strong>
+                    <i data-lucide="map-pinned"></i>
+                    Local
+                </strong>
+                <p id="detailLocation"></p>
+            </div>
+
+            <div class="detail-item">
+
+                <strong>
+                    <i data-lucide="badge-check"></i>
+                    Status
+                </strong>
+
+                <select id="detailStatus">
+                    <option>Pendente</option>
+                    <option>Em Análise</option>
+                    <option>Resolvido</option>
+                </select>
+
+            </div>
+
+            <button onclick="salvarStatus()">
+                <i data-lucide="save"></i>
+                Salvar Alterações
+            </button>
+
+            <div class="detail-item">
+                <strong>
+                    <i data-lucide="file-text"></i>
+                    Descrição
+                </strong>
+
+                <div id="detailDescription"></div>
+            </div>
+
+            <div class="detail-item">
+                <strong>
+                    <i data-lucide="message-square-text"></i>
+                    Feedback
+                </strong>
+
+                <div id="detailFeedback"></div>
+            </div>
+
+        </aside>
+    </div>
+    <script type="module" src="admin.js"></script>
+    <script>
+    lucide.createIcons();
+    </script>
+</body>
+
+</html>

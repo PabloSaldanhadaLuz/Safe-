@@ -1,110 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safe+</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
 
-    <!-- LOGIN -->
+<body>
     <div id="loginScreen" class="screen active">
         <div class="login-container">
             <div class="logo-area">
-                <div class="logo-icon">🛡️</div>
-                <h1>Safe+</h1>
-                <p>Segurança e Saúde no Trabalho</p>
+                <div class="logo-icon">
+                    <img src="logo safe+.png" alt="">
+                </div>
+                <h1>Safe<span>+</span></h1>
+                <p>CUIDAR <span>•</span> PREVENIR <span>•</span> PROTEGER</p>
             </div>
-
             <div class="login-card">
-                <h2>Entrar</h2>
-
-                <input type="email" id="email" placeholder="Digite seu e-mail">
-                <input type="password" id="password" placeholder="Digite sua senha">
-
-                <button onclick="login()">Entrar</button>
-
-                <div class="login-links">
-                    <a href="#">Esqueceu a senha?</a>
-                    <a href="#">Criar conta</a>
+                <div id="loginCard">
+                    <h2>Entrar</h2>
+                    <input type="email" id="email" placeholder="Digite seu e-mail">
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                    <button onclick="login()">Entrar</button>
+                    <div class="login-links">
+                        <a href="#">Esqueceu a senha?</a>
+                        <a href="javascript:void(0)" onclick="showRegister()">
+                            Criar conta
+                        </a>
+                    </div>
+                </div>
+                <div id="registerCard" class="hidden">
+                    <h2>Criar Conta</h2>
+                    <input type="text" id="nome" placeholder="Nome completo">
+                    <input type="text" id="empresa" placeholder="Empresa">
+                    <input type="text" id="cargo" placeholder="Cargo">
+                    <input type="email" id="registerEmail" placeholder="Digite seu e-mail">
+                    <input type="password" id="registerPassword" placeholder="Digite sua senha">
+                    <button onclick="register()">
+                        Criar Conta
+                    </button>
+                    <div class="login-links">
+                        <a href="javascript:void(0)" onclick="showLogin()">
+                            ← Voltar ao Login
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- APP -->
     <div id="appScreen" class="hidden">
-
         <div class="layout">
-
-            <!-- SIDEBAR -->
             <aside class="sidebar">
                 <div>
                     <h1>Safe+</h1>
                     <p>Sistema SST</p>
-
                     <nav>
-                        <button onclick="openTab('home')">🏠 Início</button>
-                        <button onclick="openTab('physicalRisk')">⚠️ Reportar</button>
-                        <button onclick="openTab('reports')">📄 Relatos</button>
-                        <button onclick="openTab('profile')">👤 Perfil</button>
+                        <button onclick="openTab('home')">
+                            <i data-lucide="house"></i>
+                            Início
+                        </button>
+                        <button onclick="openTab('physicalRisk')">
+                            <i data-lucide="triangle-alert"></i>
+                            Reportar
+                        </button>
+                        <button onclick="openTab('reports')">
+                            <i data-lucide="file-text"></i>
+                            Relatos
+                        </button>
+                        <button onclick="openTab('profile')">
+                            <i data-lucide="user-round"></i>
+                            Perfil
+                        </button>
+                        <button onclick="logout()">
+                            <i data-lucide="log-out"></i>
+                            Sair
+                        </button>
                     </nav>
                 </div>
             </aside>
-
-            <!-- MAIN -->
             <main class="main-content">
-
                 <header>
                     <div>
                         <h2>Safe+</h2>
                         <p>Monitoramento SST</p>
                     </div>
-
-                    <button class="notification">🔔</button>
+                    <button class="notification"><i data-lucide="bell"></i></button>
                 </header>
-
-                <!-- HOME -->
                 <section id="home" class="tab active-tab">
                     <div class="welcome-card">
-                        <h2>Bem-vindo, Carlos</h2>
+                        <h2 id="welcomeName">Bem-vindo</h2>
                         <p>Ajude a manter um ambiente de trabalho seguro.</p>
                     </div>
-
                     <div class="actions">
                         <button onclick="openTab('physicalRisk')" class="blue-btn">
-                            ⚠️ Reportar Risco Físico
+                            <i data-lucide="bell"></i>
+                            Reportar Risco Físico
                         </button>
-
                         <button onclick="openTab('wellBeing')" class="green-btn">
-                            🧠 Bem-Estar Psicológico
+                            <i data-lucide="heart-pulse"></i>
+                            Bem-Estar Psicológico
                         </button>
-
                         <button onclick="openTab('reports')" class="dark-btn">
-                            📄 Ver Meus Relatos
+                            <i data-lucide="file-text"></i>
+                            Ver Meus Relatos
                         </button>
                     </div>
-
                     <div class="news">
                         <h3>Comunicados</h3>
-
                         <div class="news-card">
                             <h4>Treinamento SST</h4>
                             <p>Treinamento obrigatório no auditório.</p>
                         </div>
-
                         <div class="news-card">
                             <h4>Uso de EPI</h4>
                             <p>Verifique seu equipamento regularmente.</p>
                         </div>
                     </div>
                 </section>
-
-                <!-- RISCO -->
                 <section id="physicalRisk" class="tab">
                     <h2>Relato de Risco Físico</h2>
-
                     <select id="riskType">
                         <option value="">Selecione o risco</option>
                         <option>Elétrico</option>
@@ -112,93 +129,108 @@
                         <option>Máquina</option>
                         <option>EPI</option>
                     </select>
-
                     <textarea id="riskDescription" placeholder="Descrição do risco"></textarea>
-
                     <input type="text" id="riskLocation" placeholder="Localização específica">
-
                     <input type="file">
-
                     <button onclick="submitPhysicalRisk()" class="blue-btn">
                         Enviar Relato
                     </button>
                 </section>
-
-                <!-- BEM ESTAR -->
                 <section id="wellBeing" class="tab">
                     <h2>Bem-Estar Psicológico</h2>
-
                     <select id="mentalType">
                         <option value="">Selecione</option>
                         <option>Estresse</option>
                         <option>Assédio Moral</option>
                         <option>Burnout</option>
                     </select>
-
                     <textarea id="mentalDescription" placeholder="Descreva a situação"></textarea>
-
                     <div class="confidential-box">
                         🔒 Garantimos confidencialidade do relato.
                     </div>
-
                     <label class="checkbox-area">
                         <input type="checkbox" id="anonymousToggle">
                         Desejo manter anônimo
                     </label>
-
                     <button onclick="submitMentalHealth()" class="green-btn">
                         Enviar Relato
                     </button>
                 </section>
-
-                <!-- RELATOS -->
                 <section id="reports" class="tab">
                     <h2>Meus Relatos</h2>
-
                     <div id="reportsList"></div>
                 </section>
-
-                <!-- DETALHES -->
                 <section id="details" class="tab">
                     <button class="voltar-btn" onclick="openTab('reports')">← Voltar</button>
-
                     <div class="details-card">
                         <h2 id="detailTitle"></h2>
                         <p><strong>Data:</strong> <span id="detailDate"></span></p>
                         <p><strong>Status:</strong> <span id="detailStatus"></span></p>
                         <p><strong>Descrição:</strong> <span id="detailDescription"></span></p>
                         <p><strong>Local:</strong> <span id="detailLocation"></span></p>
-
                         <div class="feedback-box">
                             <h3>Feedback da Equipe</h3>
                             <p id="detailFeedback"></p>
                         </div>
                     </div>
                 </section>
-
-                <!-- PERFIL -->
                 <section id="profile" class="tab">
-                    <div class="profile-card">
-                        <div class="profile-avatar">👤</div>
-                        <h2>Carlos Henrique</h2>
-                        <p>Técnico Operacional</p>
-                    </div>
-                </section>
 
+                    <div class="profile-card">
+
+                        <div class="profile-avatar">
+                            JS
+                        </div>
+
+                        <h2 id="profileName"></h2>
+                        <p class="subtitle">Funcionário</p>
+
+                        <div class="profile-info">
+
+                            <div class="info-item">
+                                <i data-lucide="briefcase"></i>
+
+                                <div>
+                                    <span>Cargo</span>
+                                    <strong id="profileCargo"></strong>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <i data-lucide="building-2"></i>
+
+                                <div>
+                                    <span>Empresa</span>
+                                    <strong id="profileEmpresa"></strong>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <i data-lucide="mail"></i>
+
+                                <div>
+                                    <span>E-mail</span>
+                                    <strong id="profileEmail"></strong>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
             </main>
         </div>
-
-        <!-- MOBILE NAV -->
         <nav class="mobile-nav">
-            <button onclick="openTab('home')">🏠</button>
-            <button onclick="openTab('physicalRisk')">⚠️</button>
-            <button onclick="openTab('reports')">📄</button>
-            <button onclick="openTab('profile')">👤</button>
+            <button onclick="openTab('home')"><i data-lucide="house"></i></button>
+            <button onclick="openTab('physicalRisk')"><i data-lucide="triangle-alert"></i></button>
+            <button onclick="openTab('reports')"><i data-lucide="file-text"></i></button>
+            <button onclick="openTab('profile')"><i data-lucide="user-round"></i></button>
+            <button onclick="logout()"><i data-lucide="log-out"></i></button>
         </nav>
-
     </div>
-
-    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+    <script type="module" src="script.js"></script>
 </body>
-</html>
 
+</html>
